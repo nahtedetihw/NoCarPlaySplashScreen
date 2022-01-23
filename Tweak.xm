@@ -10,9 +10,8 @@
 
 %hook SBRemoteTransientOverlaySession
 -(void)activateWithContext:(id)arg1 {
-    if ([self.definition.serviceName isEqual:@"com.apple.CarPlaySplashScreen"] && [self.definition.viewControllerClassName isEqual:@"CARSplashScreenViewController"]) {
-        // remove for CarPlaySplashScreen
-    } else {
+    if (!([self.definition.serviceName isEqual:@"com.apple.CarPlaySplashScreen"] && [self.definition.viewControllerClassName isEqual:@"CARSplashScreenViewController"])) {
+        // not the splash screen, so run orig
         %orig;
     }
 }
